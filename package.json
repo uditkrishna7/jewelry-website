@@ -1,0 +1,25 @@
+{
+  "name": "jewelry-website",
+  "version": "1.0.0",
+  "description": "A website for showcasing and selling jewelry.",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "dev": "nodemon server/app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.2",
+    "body-parser": "^1.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "keywords": [
+    "jewelry",
+    "ecommerce",
+    "website"
+  ],
+  "author": "Your Name",
+  "license": "ISC"
+}

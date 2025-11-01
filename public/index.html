@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Jewelry Store — Exquisite Handcrafted Pieces</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <img src="assets/MIK-Tile-Beads&Jewellery-3Charms&Pendants.jpg" alt="Jewelry Store Logo" class="logo" />
+                <h1 class="sr-only">Jewelry Store</h1>
+            </div>
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <input type="search" id="site-search" placeholder="Search rings, necklaces..." />
+                <a href="#cart" class="cart-link" aria-label="View cart">Cart (0)</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-carousel">
+                <div class="slide">
+                    <img src="assets/nn-strip_20230302-new-vacation-destination-tins__47190_product.original.jpg" alt="Gold necklace on bust" loading="lazy" />
+                    <div class="slide-caption">
+                        <h2>Timeless Elegance</h2>
+                        <p>Handcrafted necklaces and pendants — perfect for special moments.</p>
+                        <a href="#collections" class="btn">Explore Collections</a>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="assets/resized-shop-with-us.jpg" alt="Diamond ring close-up" loading="lazy" />
+                    <div class="slide-caption">
+                        <h2>Brilliance in Every Detail</h2>
+                        <p>Rings crafted with precision using ethically sourced stones.</p>
+                        <a href="#products" class="btn">View Rings</a>
+                    </div>
+                </div>
+            </div>
+            <div class="featured-strip">
+                <h2>Featured Jewelry</h2>
+                <div id="featured-products" class="product-row">
+                    <article class="product-card" data-product-id="1">
+                        <img src="assets/MIK-Tile-Beads&Jewellery-3Charms&Pendants.jpg" alt="Elegant pearl necklace" loading="lazy" />
+                        <h3>Pearl Grace Necklace</h3>
+                        <p class="price">$120</p>
+                    </article>
+                    <article class="product-card" data-product-id="2">
+                        <img src="assets/nn-strip_20230302-new-vacation-destination-tins__47190_product.original.jpg" alt="Gold hoop earrings" loading="lazy" />
+                        <h3>Gold Hoop Earrings</h3>
+                        <p class="price">$85</p>
+                    </article>
+                    <article class="product-card" data-product-id="3">
+                        <img src="assets/resized-shop-with-us.jpg" alt="Sapphire ring" loading="lazy" />
+                        <h3>Sapphire Halo Ring</h3>
+                        <p class="price">$240</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about container">
+            <h2>About Us</h2>
+            <p>
+                We design and craft high-quality jewelry using traditional techniques combined with modern design.
+                Our pieces are made from responsibly sourced metals and gemstones. Each item is inspected for quality
+                and comes with a care card and certificate where applicable.
+            </p>
+            <div class="values-grid">
+                <div class="value">
+                    <h3>Handmade</h3>
+                    <p>Artisan craftsmanship in every piece.</p>
+                </div>
+                <div class="value">
+                    <h3>Sustainable</h3>
+                    <p>Ethical sourcing and responsible practices.</p>
+                </div>
+                <div class="value">
+                    <h3>Guarantee</h3>
+                    <p>1-year manufacturing warranty and repair service.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="collections" class="collections container">
+            <h2>Collections</h2>
+            <div class="collection-list">
+                <article class="collection-card">
+                    <img src="assets/MIK-Tile-Beads&Jewellery-3Charms&Pendants.jpg" alt="Necklaces collection" loading="lazy" />
+                    <h3>Necklaces</h3>
+                    <p>From delicate chains to statement pendants.</p>
+                </article>
+                <article class="collection-card">
+                    <img src="assets/nn-strip_20230302-new-vacation-destination-tins__47190_product.original.jpg" alt="Rings collection" loading="lazy" />
+                    <h3>Rings</h3>
+                    <p>Engagement, fashion, and stacking rings.</p>
+                </article>
+                <article class="collection-card">
+                    <img src="assets/resized-shop-with-us.jpg" alt="Earrings collection" loading="lazy" />
+                    <h3>Earrings</h3>
+                    <p>Studs, hoops and drop earrings for every occasion.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="products" class="products container">
+            <h2>Our Products</h2>
+
+            <div class="filter-bar">
+                <button data-filter="all" class="active">All</button>
+                <button data-filter="rings">Rings</button>
+                <button data-filter="necklaces">Necklaces</button>
+                <button data-filter="earrings">Earrings</button>
+            </div>
+
+            <div id="product-list" class="product-grid">
+                <article class="product-card" data-category="rings" data-product-id="101">
+                    <img src="assets/MIK-Tile-Beads&Jewellery-3Charms&Pendants.jpg" alt="Rose gold stacking ring" loading="lazy" />
+                    <div class="product-info">
+                        <h3>Rose Stacking Ring</h3>
+                        <p class="desc">Slim rose-gold band for everyday wear.</p>
+                        <p class="price">$45</p>
+                        <button class="btn add-to-cart">Add to Cart</button>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="necklaces" data-product-id="102">
+                    <img src="assets/resized-shop-with-us.jpg" alt="Minimal gold pendant" loading="lazy" />
+                    <div class="product-info">
+                        <h3>Minimal Pendant</h3>
+                        <p class="desc">14k gold pendant on adjustable chain.</p>
+                        <p class="price">$95</p>
+                        <button class="btn add-to-cart">Add to Cart</button>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="earrings" data-product-id="103">
+                    <img src="assets/nn-strip_20230302-new-vacation-destination-tins__47190_product.original.jpg" alt="Drop pearl earrings" loading="lazy" />
+                    <div class="product-info">
+                        <h3>Pearl Drop Earrings</h3>
+                        <p class="desc">Classic pearls with modern setting.</p>
+                        <p class="price">$110</p>
+                        <button class="btn add-to-cart">Add to Cart</button>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="rings" data-product-id="104">
+                    <img src="assets/MIK-Tile-Beads&Jewellery-3Charms&Pendants.jpg" alt="Emerald cocktail ring" loading="lazy" />
+                    <div class="product-info">
+                        <h3>Emerald Cocktail Ring</h3>
+                        <p class="desc">Bold centerpiece for evening wear.</p>
+                        <p class="price">$320</p>
+                        <button class="btn add-to-cart">Add to Cart</button>
+                    </div>
+                </article>
+
+                <article class="product-card" data-category="necklaces" data-product-id="105">
+                    <img src="assets/nn-strip_20230302-new-vacation-destination-tins__47190_product.original.jpg" alt="Layered chain set" loading="lazy" />
+                    <div class="product-info">
+                        <h3>Layered Chain Set</h3>
+                        <p class="desc">Three-piece chain set to mix & match.</p>
+                        <p class="price">$150</p>
+                        <button class="btn add-to-cart">Add to Cart</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="contact container">
+            <h2>Contact Us</h2>
+            <div class="contact-grid">
+                <form id="contact-form">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required />
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required />
+
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+
+                <div class="contact-info">
+                    <h3>Visit Our Studio</h3>
+                    <p>123 Artisan Lane, City, Country</p>
+                    <p>Email: <a href="mailto:uditkrishna133@gmail.com">uditkrishna133</a></p>
+                    <p>Phone: +1 (555) 123-4567</p>
+
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram">Instagram</a> |
+                        <a href="#" aria-label="Pinterest">Pinterest</a> |
+                        <a href="#" aria-label="Facebook">Facebook</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <ul>
+                        <li><a href="#story">Our Story</a></li>
+                        <li><a href="#craftmanship">Craftmanship</a></li>
+                        <li><a href="#ethics">Ethical Sourcing</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#shipping">Shipping & Returns</a></li>
+                        <li><a href="#care">Product Care</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="social-icons">
+                        <a href="#instagram" aria-label="Follow us on Instagram">Instagram</a>
+                        <a href="#pinterest" aria-label="Follow us on Pinterest">Pinterest</a>
+                        <a href="#facebook" aria-label="Follow us on Facebook">Facebook</a>
+                    </div>
+                    <p style="margin-top:1rem">Sign up for our newsletter to receive updates and exclusive offers.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Jewelry Store. All rights reserved.</p>
+                <nav class="footer-nav">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#sitemap">Sitemap</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
