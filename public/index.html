@@ -67,6 +67,16 @@
                         <h3>Sapphire Halo Ring</h3>
                         <p class="price">$240</p>
                     </article>
+                    <article class="product-card" data-product-id="4">
+                        <img src="assets/images/product4.jpg" alt="Rose Stacking Ring (mini)" loading="lazy" />
+                        <h3>Rose Stacking Ring</h3>
+                        <p class="price">$45</p>
+                    </article>
+                    <article class="product-card" data-product-id="5">
+                        <img src="assets/images/product5.jpg" alt="Minimal Pendant (mini)" loading="lazy" />
+                        <h3>Minimal Pendant</h3>
+                        <p class="price">$95</p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -115,14 +125,39 @@
             </div>
         </section>
 
+        <!-- Illustration / Gallery section to showcase more photos -->
+        <section id="gallery" class="gallery container">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+                <img src="assets/images/hero1.jpg" alt="Handcrafted necklace close-up" loading="lazy" />
+                <img src="assets/images/hero2.jpg" alt="Ring detail" loading="lazy" />
+                <img src="assets/images/product1.jpg" alt="Pearl Grace Necklace" loading="lazy" />
+                <img src="assets/images/product2.jpg" alt="Gold Hoop Earrings" loading="lazy" />
+                <img src="assets/images/product3.jpg" alt="Sapphire Halo Ring" loading="lazy" />
+                <img src="assets/images/product8.jpg" alt="Layered Chain Set" loading="lazy" />
+            </div>
+        </section>
+
         <section id="products" class="products container">
             <h2>Our Products</h2>
 
-            <div class="filter-bar">
-                <button data-filter="all" class="active">All</button>
-                <button data-filter="rings">Rings</button>
-                <button data-filter="necklaces">Necklaces</button>
-                <button data-filter="earrings">Earrings</button>
+            <div class="controls-row">
+                <div class="filter-bar">
+                    <button data-filter="all" class="active">All</button>
+                    <button data-filter="rings">Rings</button>
+                    <button data-filter="necklaces">Necklaces</button>
+                    <button data-filter="earrings">Earrings</button>
+                </div>
+                <div class="sort-wrap">
+                    <label for="sort-select" class="sr-only">Sort products</label>
+                    <select id="sort-select" aria-label="Sort products">
+                        <option value="default">Sort: Featured</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="name-asc">Name: A → Z</option>
+                        <option value="name-desc">Name: Z → A</option>
+                    </select>
+                </div>
             </div>
 
             <div id="product-list" class="product-grid">
@@ -175,6 +210,48 @@
                         <button class="btn add-to-cart">Add to Cart</button>
                     </div>
                 </article>
+                    
+                    <article class="product-card" data-category="rings" data-product-id="106">
+                        <img src="assets/images/product4.jpg" alt="Rose Stacking Ring" loading="lazy" />
+                        <div class="product-info">
+                            <h3>Rose Stacking Ring</h3>
+                            <p class="desc">Slim rose-gold band for everyday wear.</p>
+                            <p class="price">$45</p>
+                            <div class="card-actions">
+                                <button class="btn add-to-cart">Add to Cart</button>
+                                <button class="btn quick-view" data-action="quickview">Quick View</button>
+                                <button class="fav-toggle" aria-pressed="false" title="Add to wishlist">♡</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card" data-category="necklaces" data-product-id="107">
+                        <img src="assets/images/product5.jpg" alt="Minimal Pendant" loading="lazy" />
+                        <div class="product-info">
+                            <h3>Minimal Pendant</h3>
+                            <p class="desc">14k gold pendant on adjustable chain.</p>
+                            <p class="price">$95</p>
+                            <div class="card-actions">
+                                <button class="btn add-to-cart">Add to Cart</button>
+                                <button class="btn quick-view" data-action="quickview">Quick View</button>
+                                <button class="fav-toggle" aria-pressed="false" title="Add to wishlist">♡</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card" data-category="earrings" data-product-id="108">
+                        <img src="assets/images/product6.jpg" alt="Drop pearl earrings" loading="lazy" />
+                        <div class="product-info">
+                            <h3>Pearl Drop Earrings</h3>
+                            <p class="desc">Classic pearls with modern setting.</p>
+                            <p class="price">$110</p>
+                            <div class="card-actions">
+                                <button class="btn add-to-cart">Add to Cart</button>
+                                <button class="btn quick-view" data-action="quickview">Quick View</button>
+                                <button class="fav-toggle" aria-pressed="false" title="Add to wishlist">♡</button>
+                            </div>
+                        </div>
+                    </article>
             </div>
         </section>
 
@@ -240,6 +317,12 @@
                         <a href="#facebook" aria-label="Follow us on Facebook">Facebook</a>
                     </div>
                     <p style="margin-top:1rem">Sign up for our newsletter to receive updates and exclusive offers.</p>
+                    <form id="newsletter-form" class="newsletter-form" aria-label="Newsletter signup">
+                        <label for="newsletter-email" class="sr-only">Email</label>
+                        <input id="newsletter-email" type="email" placeholder="Your email" required />
+                        <button class="btn" type="submit">Subscribe</button>
+                        <p class="newsletter-msg" aria-live="polite" style="margin-top:.5rem;color:var(--muted)"></p>
+                    </form>
                 </div>
             </div>
             <div class="footer-bottom">
