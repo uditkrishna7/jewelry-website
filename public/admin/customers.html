@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers — Jewelry Store Admin</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-page">
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <img src="../assets/images/logo.png" alt="Jewelry Store Logo" class="admin-logo">
+                <button class="mobile-sidebar-toggle" aria-label="Toggle menu">☰</button>
+            </div>
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="index.html"><span class="icon">📊</span> Dashboard</a></li>
+                    <li><a href="products.html"><span class="icon">💎</span> Products</a></li>
+                    <li><a href="orders.html"><span class="icon">📦</span> Orders</a></li>
+                    <li><a href="customers.html" class="active"><span class="icon">👥</span> Customers</a></li>
+                    <li><a href="analytics.html"><span class="icon">📈</span> Analytics</a></li>
+                    <li><a href="settings.html"><span class="icon">⚙️</span> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <span class="admin-user">Admin User</span>
+                <button class="btn-logout">Logout</button>
+            </div>
+        </aside>
+
+        <div class="admin-main">
+            <header class="admin-header">
+                <div class="header-title">
+                    <h1>Customers</h1>
+                    <p class="text-muted">Manage customers and subscribers</p>
+                </div>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="search" id="customer-search" placeholder="Search customers..." aria-label="Search customers">
+                        <select id="customer-filter">
+                            <option value="">All Customers</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="subscribers">Newsletter Subscribers</option>
+                        </select>
+                    </div>
+                    <button class="btn" id="export-customers">Export List</button>
+                    <button class="btn btn-primary" id="send-newsletter">Send Newsletter</button>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <!-- Customer Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Customers</h3>
+                        <p class="stat-value">1,240</p>
+                        <p class="stat-change positive">↑ 48 this month</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Customers</h3>
+                        <p class="stat-value">892</p>
+                        <p class="stat-change">71.9% of total</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Newsletter Subscribers</h3>
+                        <p class="stat-value">2,156</p>
+                        <p class="stat-change positive">↑ 12% vs last month</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Average Order Value</h3>
+                        <p class="stat-value">$145</p>
+                        <p class="stat-change positive">↑ $12 vs last month</p>
+                    </div>
+                </div>
+
+                <!-- Customers Table -->
+                <div class="table-container">
+                    <table class="data-table" id="customers-table">
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Email</th>
+                                <th>Orders</th>
+                                <th>Total Spent</th>
+                                <th>Last Order</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Customer rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Customer Details Modal -->
+                <div id="customer-modal" class="modal" aria-hidden="true">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Customer Details</h2>
+                            <button class="close-modal" aria-label="Close">✕</button>
+                        </div>
+                        <div class="customer-details">
+                            <div class="tabs">
+                                <button class="tab-btn active" data-tab="info">Profile</button>
+                                <button class="tab-btn" data-tab="orders">Orders</button>
+                                <button class="tab-btn" data-tab="preferences">Preferences</button>
+                            </div>
+                            
+                            <div class="tab-content" id="info-tab">
+                                <div class="profile-info">
+                                    <h3>Personal Information</h3>
+                                    <form id="customer-form">
+                                        <div class="form-grid">
+                                            <div class="form-group">
+                                                <label for="customer-name">Full Name</label>
+                                                <input type="text" id="customer-name" name="name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="customer-email">Email</label>
+                                                <input type="email" id="customer-email" name="email">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="customer-phone">Phone</label>
+                                                <input type="tel" id="customer-phone" name="phone">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="customer-status">Status</label>
+                                                <select id="customer-status" name="status">
+                                                    <option value="active">Active</option>
+                                                    <option value="inactive">Inactive</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group full-width">
+                                            <label for="customer-notes">Notes</label>
+                                            <textarea id="customer-notes" name="notes" rows="3"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content hidden" id="orders-tab">
+                                <div class="order-history">
+                                    <h3>Order History</h3>
+                                    <table class="mini-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Date</th>
+                                                <th>Total</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="customer-orders">
+                                            <!-- Order history will be populated by JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content hidden" id="preferences-tab">
+                                <div class="preferences-section">
+                                    <h3>Communication Preferences</h3>
+                                    <form id="preferences-form">
+                                        <div class="checkbox-group">
+                                            <label>
+                                                <input type="checkbox" name="newsletter" id="pref-newsletter">
+                                                Receive newsletter
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="promotions" id="pref-promotions">
+                                                Special offers and promotions
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="order_updates" id="pref-orders">
+                                                Order status updates
+                                            </label>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Update Preferences</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Newsletter Modal -->
+                <div id="newsletter-modal" class="modal" aria-hidden="true">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Send Newsletter</h2>
+                            <button class="close-modal" aria-label="Close">✕</button>
+                        </div>
+                        <form id="newsletter-form">
+                            <div class="form-group">
+                                <label for="newsletter-subject">Subject</label>
+                                <input type="text" id="newsletter-subject" name="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newsletter-content">Content</label>
+                                <textarea id="newsletter-content" name="content" rows="10" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" name="test_send">
+                                    Send test email first
+                                </label>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn" data-action="cancel">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Send Newsletter</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script src="js/customers.js"></script>
+</body>
+</html>

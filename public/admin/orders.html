@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders Management — Jewelry Store Admin</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-page">
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <img src="../assets/images/logo.png" alt="Jewelry Store Logo" class="admin-logo">
+                <button class="mobile-sidebar-toggle" aria-label="Toggle menu">☰</button>
+            </div>
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="index.html"><span class="icon">📊</span> Dashboard</a></li>
+                    <li><a href="products.html"><span class="icon">💎</span> Products</a></li>
+                    <li><a href="orders.html" class="active"><span class="icon">📦</span> Orders</a></li>
+                    <li><a href="customers.html"><span class="icon">👥</span> Customers</a></li>
+                    <li><a href="analytics.html"><span class="icon">📈</span> Analytics</a></li>
+                    <li><a href="settings.html"><span class="icon">⚙️</span> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <span class="admin-user">Admin User</span>
+                <button class="btn-logout">Logout</button>
+            </div>
+        </aside>
+
+        <div class="admin-main">
+            <header class="admin-header">
+                <div class="header-title">
+                    <h1>Orders</h1>
+                    <p class="text-muted">Manage customer orders</p>
+                </div>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="search" id="order-search" placeholder="Search orders..." aria-label="Search orders">
+                        <select id="status-filter">
+                            <option value="">All Statuses</option>
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" id="export-orders">Export Orders</button>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <!-- Orders List -->
+                <div class="table-container">
+                    <table class="data-table" id="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Order rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Order Details Modal -->
+                <div id="order-modal" class="modal" aria-hidden="true">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Order Details</h2>
+                            <button class="close-modal" aria-label="Close">✕</button>
+                        </div>
+                        <div class="order-details">
+                            <div class="order-info">
+                                <div class="info-group">
+                                    <h3>Order Information</h3>
+                                    <p><strong>Order ID:</strong> <span id="detail-id"></span></p>
+                                    <p><strong>Date:</strong> <span id="detail-date"></span></p>
+                                    <p><strong>Status:</strong> <span id="detail-status"></span></p>
+                                </div>
+                                <div class="info-group">
+                                    <h3>Customer Details</h3>
+                                    <p><strong>Name:</strong> <span id="detail-customer"></span></p>
+                                    <p><strong>Email:</strong> <span id="detail-email"></span></p>
+                                    <p><strong>Phone:</strong> <span id="detail-phone"></span></p>
+                                </div>
+                                <div class="info-group">
+                                    <h3>Shipping Address</h3>
+                                    <p id="detail-address"></p>
+                                </div>
+                            </div>
+                            <div class="order-items">
+                                <h3>Order Items</h3>
+                                <table class="items-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="detail-items">
+                                        <!-- Items will be populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                                <div class="order-totals">
+                                    <p><strong>Subtotal:</strong> <span id="detail-subtotal"></span></p>
+                                    <p><strong>Shipping:</strong> <span id="detail-shipping"></span></p>
+                                    <p><strong>Total:</strong> <span id="detail-total"></span></p>
+                                </div>
+                            </div>
+                            <div class="order-actions">
+                                <select id="update-status">
+                                    <option value="">Update Status</option>
+                                    <option value="processing">Mark as Processing</option>
+                                    <option value="shipped">Mark as Shipped</option>
+                                    <option value="delivered">Mark as Delivered</option>
+                                    <option value="cancelled">Cancel Order</option>
+                                </select>
+                                <button class="btn">Send Tracking Info</button>
+                                <button class="btn">Email Customer</button>
+                                <button class="btn">Print Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script src="js/orders.js"></script>
+</body>
+</html>

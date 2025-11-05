@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard — Jewelry Store</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-page">
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <img src="../assets/images/logo.png" alt="Jewelry Store Logo" class="admin-logo">
+                <button class="mobile-sidebar-toggle" aria-label="Toggle menu">☰</button>
+            </div>
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="index.html" class="active"><span class="icon">📊</span> Dashboard</a></li>
+                    <li><a href="products.html"><span class="icon">💎</span> Products</a></li>
+                    <li><a href="orders.html"><span class="icon">📦</span> Orders</a></li>
+                    <li><a href="customers.html"><span class="icon">👥</span> Customers</a></li>
+                    <li><a href="analytics.html"><span class="icon">📈</span> Analytics</a></li>
+                    <li><a href="settings.html"><span class="icon">⚙️</span> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <span class="admin-user">Admin User</span>
+                <button class="btn-logout">Logout</button>
+            </div>
+        </aside>
+
+        <div class="admin-main">
+            <header class="admin-header">
+                <h1>Dashboard</h1>
+                <div class="header-actions">
+                    <input type="search" placeholder="Search..." aria-label="Search">
+                    <button class="btn btn-primary">New Product</button>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <!-- Stats Cards -->
+                <div class="stat-card">
+                    <h3>Total Sales</h3>
+                    <p class="stat-value">$12,450</p>
+                    <p class="stat-change positive">↑ 12% vs last month</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Orders</h3>
+                    <p class="stat-value">84</p>
+                    <p class="stat-change">This month</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Products</h3>
+                    <p class="stat-value">156</p>
+                    <p class="stat-change neutral">Active listings</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Customers</h3>
+                    <p class="stat-value">1,240</p>
+                    <p class="stat-change positive">↑ 48 new this month</p>
+                </div>
+
+                <!-- Recent Orders -->
+                <div class="dashboard-table orders-table">
+                    <div class="table-header">
+                        <h2>Recent Orders</h2>
+                        <a href="orders.html" class="btn">View All</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Products</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#12345</td>
+                                <td>John Smith</td>
+                                <td>2 items</td>
+                                <td>$245.00</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td>2025-11-03</td>
+                            </tr>
+                            <tr>
+                                <td>#12344</td>
+                                <td>Emma Wilson</td>
+                                <td>1 item</td>
+                                <td>$120.00</td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td>2025-11-02</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Low Stock Alert -->
+                <div class="dashboard-card stock-alert">
+                    <h2>Low Stock Alert</h2>
+                    <ul class="alert-list">
+                        <li>
+                            <span class="product-name">Pearl Grace Necklace</span>
+                            <span class="stock-count">2 left</span>
+                            <button class="btn btn-small">Restock</button>
+                        </li>
+                        <li>
+                            <span class="product-name">Sapphire Ring</span>
+                            <span class="stock-count">3 left</span>
+                            <button class="btn btn-small">Restock</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="dashboard-card quick-actions">
+                    <h2>Quick Actions</h2>
+                    <div class="action-buttons">
+                        <button class="btn">Add Product</button>
+                        <button class="btn">Create Order</button>
+                        <button class="btn">Export Report</button>
+                        <button class="btn">Send Newsletter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

@@ -300,6 +300,43 @@ document.addEventListener('DOMContentLoaded', () => {
   // init wishlist UI
   refreshWishlistUI();
 
+  // When new products are rendered dynamically, refresh references for interactive features
+  const observer = new MutationObserver(() => {
+    // rebind add-to-cart, quick-view, and fav-toggle for newly inserted nodes
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+      if (!btn.dataset.bound) {
+        btn.dataset.bound = '1';
+        btn.addEventListener('click', (e) => {
+          const card = e.target.closest('.product-card');
+          cartCount += 1;
+          updateCartUI();
+          e.target.textContent = 'Added';
+          e.target.disabled = true;
+          setTimeout(() => { e.target.textContent = 'Add to Cart'; e.target.disabled = false; }, 1000);
+        });
+      }
+    });
+    document.querySelectorAll('.fav-toggle').forEach(btn => {
+      if (!btn.dataset.bound) {
+        btn.dataset.bound = '1';
+        btn.addEventListener('click', (e) => {
+          const id = e.target.closest('.product-card')?.dataset.productId || '';
+          toggleWishlist(id);
+        });
+      }
+    });
+    document.querySelectorAll('.quick-view').forEach(btn => {
+      if (!btn.dataset.bound) {
+        btn.dataset.bound = '1';
+        btn.addEventListener('click', (e) => {
+          const card = e.target.closest('.product-card');
+          openQuickviewFromCard(card);
+        });
+      }
+    });
+  });
+  if (productList) observer.observe(productList, { childList: true, subtree: true });
+
   // Newsletter form handler (client-side only)
   const newsletterForm = document.getElementById('newsletter-form');
   if (newsletterForm) {
