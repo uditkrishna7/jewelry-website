@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: jewelry-website-web
+    env: node
+    plan: free
+    repo: .
+    branch: main
+    buildCommand: "npm install"
+    startCommand: "node server/app.js"
+    autoDeploy: true
+    # After deploy, ensure the SQLite DB is created and seeded.
+    # For Render's YAML, post-deploy hooks aren't standardized in all plans; you can
+    # rely on the app's auto-init (server/app.js will run init if DB file is missing)
+    # or run `node server/init-db.js` manually in the Render shell after the first deploy.

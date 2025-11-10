@@ -6,7 +6,6 @@ const productsController = require('../controllers/productsController');
 router.get('/', (req, res) => {
     res.send('Welcome to the Jewelry Website!');
 });
-
-router.use('/products', productsController);
+// Note: API product routes are mounted under /api in server/app.js
 
 module.exports = router;

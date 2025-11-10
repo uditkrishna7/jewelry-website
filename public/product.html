@@ -1,11 +1,41 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0; url=./index.html">
-    <title>Redirecting...</title>
-  </head>
-  <body>
-    <p>Redirecting to home — <a href="./index.html">click here</a> if you are not redirected.</p>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Product — Jewelry Store</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="assets/MIK-Tile-Beads&Jewellery-3Charms&Pendants.jpg" alt="Logo" class="logo">
+      </div>
+      <nav class="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#products">Products</a></li>
+          <li><a href="admin/index.html">Admin</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="#" class="cart-link">Cart (0)</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="product-detail" class="product-detail">
+      <p>Loading product…</p>
+    </div>
+  </main>
+
+  <footer class="site-footer container">
+    <p>&copy; Jewelry Store</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/product.js"></script>
+</body>
 </html>

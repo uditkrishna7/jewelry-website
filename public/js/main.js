@@ -159,6 +159,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Make whole product card navigate to product detail unless the click was on a control (button, quick view, wishlist)
+  productList?.addEventListener('click', (e) => {
+    const control = e.target.closest('button, .quick-view, .fav-toggle, a');
+    if (control) return; // let the control handle it
+    const card = e.target.closest('.product-card');
+    if (!card) return;
+    const id = card.dataset.productId || card.getAttribute('data-product-id');
+    if (id) {
+      window.location.href = `product.html?id=${encodeURIComponent(id)}`;
+    }
+  });
+
   // --- New features: sorting, quick view modal, wishlist, newsletter, smooth scroll ---
 
   // Smooth scroll for same-page anchors
