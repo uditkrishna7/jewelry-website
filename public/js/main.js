@@ -70,7 +70,21 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.add-to-cart').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const card = e.target.closest('.product-card');
+      const id = card?.dataset.productId || card?.getAttribute('data-product-id') || '';
       const title = card?.querySelector('h3')?.textContent || 'Item';
+      const price = parseFloat(card?.querySelector('.price')?.textContent?.replace(/[^0-9.]/g, '') || 0);
+      const description = card?.querySelector('.desc')?.textContent || '';
+      
+      // Store cart item in localStorage
+      const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+      const existingItem = cartItems.find(item => item.id === id);
+      if (existingItem) {
+        existingItem.quantity = (existingItem.quantity || 1) + 1;
+      } else {
+        cartItems.push({ id, name: title, price, description, quantity: 1 });
+      }
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      
       cartCount += 1;
       updateCartUI();
       // visual feedback
@@ -80,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.textContent = 'Add to Cart';
         btn.disabled = false;
       }, 1000);
-      // For later: send request to server to save cart
       console.info(`Added to cart: ${title}`);
     });
   });
