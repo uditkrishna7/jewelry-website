@@ -47,7 +47,40 @@ function run() {
     });
     insert.finalize(() => {
       console.log('Seed data inserted (or already present).');
-      db.close();
+      
+      // Insert sample customers
+      const customers = [
+        { id: 1, name: 'Sarah Johnson', email: 'sarah.j@example.com', phone: '555-0101', status: 'active', total_orders: 3, total_spent: 450.50 },
+        { id: 2, name: 'Emma Wilson', email: 'emma.w@example.com', phone: '555-0102', status: 'active', total_orders: 5, total_spent: 892.75 },
+        { id: 3, name: 'Jessica Martinez', email: 'jessica.m@example.com', phone: '555-0103', status: 'active', total_orders: 2, total_spent: 295.00 },
+        { id: 4, name: 'Ashley Brown', email: 'ashley.b@example.com', phone: '555-0104', status: 'inactive', total_orders: 1, total_spent: 145.99 }
+      ];
+
+      const customerInsert = db.prepare('INSERT OR IGNORE INTO customers (id, name, email, phone, status, total_orders, total_spent) VALUES (?, ?, ?, ?, ?, ?, ?)');
+      customers.forEach(c => {
+        customerInsert.run(c.id, c.name, c.email, c.phone, c.status, c.total_orders, c.total_spent);
+      });
+      customerInsert.finalize(() => {
+        console.log('Customer seed data inserted.');
+        
+        // Insert newsletter subscribers
+        const subscribers = [
+          { email: 'sarah.j@example.com', name: 'Sarah Johnson' },
+          { email: 'emma.w@example.com', name: 'Emma Wilson' },
+          { email: 'jessica.m@example.com', name: 'Jessica Martinez' },
+          { email: 'newsletter@example.com', name: 'Newsletter Subscriber' },
+          { email: 'vip@example.com', name: 'VIP Customer' }
+        ];
+
+        const subscriberInsert = db.prepare('INSERT OR IGNORE INTO newsletter_subscribers (email, name, subscribed) VALUES (?, ?, 1)');
+        subscribers.forEach(s => {
+          subscriberInsert.run(s.email, s.name);
+        });
+        subscriberInsert.finalize(() => {
+          console.log('Newsletter subscribers seed data inserted.');
+          db.close();
+        });
+      });
     });
   }
 }
