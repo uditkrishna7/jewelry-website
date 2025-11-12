@@ -29,7 +29,7 @@ exports.getProductById = async (req, res) => {
 
 // Create a new product
 exports.createProduct = async (req, res) => {
-    const { name, description, price, image_url, category, stock } = req.body;
+    const { name, description, price, image_url } = req.body;
     
     if (!name || !price) {
         return res.status(400).json({ message: 'Name and price are required' });
@@ -40,9 +40,7 @@ exports.createProduct = async (req, res) => {
             name,
             description: description || '',
             price: parseFloat(price),
-            image_url: image_url || 'assets/images/product1.jpg',
-            category: category || '',
-            stock: stock || 0
+            image_url: image_url || 'assets/images/product1.jpg'
         };
         const createdProduct = await db.createProduct(product);
         res.status(201).json(createdProduct);
@@ -55,7 +53,7 @@ exports.createProduct = async (req, res) => {
 // Update a product
 exports.updateProduct = async (req, res) => {
     const { id } = req.params;
-    const { name, description, price, image_url, category, stock } = req.body;
+    const { name, description, price, image_url } = req.body;
     
     if (!name || !price) {
         return res.status(400).json({ message: 'Name and price are required' });
@@ -66,9 +64,7 @@ exports.updateProduct = async (req, res) => {
             name,
             description: description || '',
             price: parseFloat(price),
-            image_url: image_url || 'assets/images/product1.jpg',
-            category: category || '',
-            stock: stock || 0
+            image_url: image_url || 'assets/images/product1.jpg'
         };
         const result = await db.updateProduct(id, updatedProduct);
         if (result) {

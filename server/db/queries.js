@@ -22,29 +22,29 @@ function getProductById(id) {
 }
 
 function createProduct(product) {
-    const { name, description, price, imageUrl } = product;
+    const { name, description, price, image_url } = product;
     return new Promise((resolve, reject) => {
         db.run(
-            'INSERT INTO products (name, description, price, imageUrl) VALUES (?, ?, ?, ?)',
-            [name, description, price, imageUrl],
+            'INSERT INTO products (name, description, price, image_url) VALUES (?, ?, ?, ?)',
+            [name, description, price, image_url],
             function (err) {
                 if (err) return reject(err);
-                resolve({ id: this.lastID, name, description, price, imageUrl });
+                resolve({ id: this.lastID, name, description, price, image_url });
             }
         );
     });
 }
 
 function updateProduct(id, product) {
-    const { name, description, price, imageUrl } = product;
+    const { name, description, price, image_url } = product;
     return new Promise((resolve, reject) => {
         db.run(
-            'UPDATE products SET name = ?, description = ?, price = ?, imageUrl = ? WHERE id = ?',
-            [name, description, price, imageUrl, id],
+            'UPDATE products SET name = ?, description = ?, price = ?, image_url = ? WHERE id = ?',
+            [name, description, price, image_url, id],
             function (err) {
                 if (err) return reject(err);
                 if (this.changes === 0) return resolve(null);
-                resolve({ id, name, description, price, imageUrl });
+                resolve({ id, name, description, price, image_url });
             }
         );
     });
