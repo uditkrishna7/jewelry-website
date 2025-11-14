@@ -369,5 +369,20 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        // Simple hero carousel auto-rotate
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.hero-carousel .slide');
+            if (!slides || slides.length === 0) return;
+            let i = 0;
+            // Ensure first slide is visible
+            slides.forEach((s, idx) => s.classList.toggle('active', idx === 0));
+            setInterval(() => {
+                slides[i].classList.remove('active');
+                i = (i + 1) % slides.length;
+                slides[i].classList.add('active');
+            }, 5000);
+        });
+    </script>
 </body>
 </html>
