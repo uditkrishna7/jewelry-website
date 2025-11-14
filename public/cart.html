@@ -5,6 +5,107 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Shopping Cart — Jewelry Store</title>
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+    }
+    .modal-header {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    .qr-code-container {
+      background: #f5f5f5;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+    .qr-code-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    .payment-instructions {
+      text-align: left;
+      background: #e8f4f8;
+      padding: 1rem;
+      border-radius: 4px;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .payment-instructions h4 {
+      margin-top: 0;
+      color: #d4af37;
+    }
+    .payment-instructions ol {
+      margin: 0.5rem 0;
+      padding-left: 1.5rem;
+    }
+    .payment-instructions li {
+      margin-bottom: 0.5rem;
+    }
+    .order-total {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #b7864a;
+      margin: 1rem 0;
+    }
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .btn-confirm {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .btn-confirm:hover {
+      background: #218838;
+    }
+    .btn-cancel {
+      background: #6c757d;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .btn-cancel:hover {
+      background: #5a6268;
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -73,6 +174,42 @@
     </section>
   </main>
 
+  <!-- Payment QR Code Modal -->
+  <div id="payment-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">💳 Scan to Pay</div>
+      
+      <div class="order-total">
+        Order Total: <span id="modal-total">$0.00</span>
+      </div>
+
+      <div class="qr-code-container">
+        <img src="assets/QR.jpg" alt="Payment QR Code" style="width: 280px; height: 280px;">
+      </div>
+
+      <div class="payment-instructions">
+        <h4>📱 How to Pay:</h4>
+        <ol>
+          <li>Open your payment app (Google Pay, PhonePe, etc.)</li>
+          <li>Tap "Scan QR Code"</li>
+          <li>Point your camera at the QR code</li>
+          <li>Confirm the amount and complete payment</li>
+          <li>Click "Payment Confirmed" below after successful payment</li>
+        </ol>
+      </div>
+
+      <p style="color: #666; font-size: 0.85rem; margin: 1rem 0;">
+        ✓ Secure & encrypted payment<br>
+        ✓ Instant payment confirmation
+      </p>
+
+      <div class="modal-actions">
+        <button class="btn-confirm" id="btn-payment-confirmed">✓ Payment Confirmed</button>
+        <button class="btn-cancel" id="btn-cancel-payment">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <footer class="site-footer container" style="margin-top: 2rem; padding: 2rem 0; border-top: 1px solid #e0e0e0;">
     <p>&copy; Jewelry Store</p>
   </footer>
@@ -86,6 +223,11 @@
       const subtotalEl = document.getElementById('subtotal');
       const taxEl = document.getElementById('tax');
       const totalEl = document.getElementById('total');
+      const paymentModal = document.getElementById('payment-modal');
+      const modalTotal = document.getElementById('modal-total');
+      const btnPaymentConfirmed = document.getElementById('btn-payment-confirmed');
+      const btnCancelPayment = document.getElementById('btn-cancel-payment');
+      const checkoutBtn = document.querySelector('.cart-summary .btn');
 
       function loadCart() {
         try {
@@ -160,6 +302,9 @@
         subtotalEl.textContent = '$' + subtotal.toFixed(2);
         taxEl.textContent = '$' + tax.toFixed(2);
         totalEl.textContent = '$' + total.toFixed(2);
+
+        // Update modal total
+        modalTotal.textContent = '$' + total.toFixed(2);
       }
 
       function escapeHtml(text) {
@@ -167,6 +312,42 @@
         div.textContent = text;
         return div.innerHTML;
       }
+
+      // Checkout button handler
+      checkoutBtn.addEventListener('click', () => {
+        const cart = JSON.parse(localStorage.getItem('cartItems') || '[]');
+        if (cart.length === 0) {
+          alert('Your cart is empty!');
+          return;
+        }
+        paymentModal.classList.add('active');
+      });
+
+      // Payment confirmed handler
+      btnPaymentConfirmed.addEventListener('click', () => {
+        alert('✓ Payment received! Thank you for your order.\n\nYour order has been confirmed and will be processed shortly.');
+        
+        // Clear cart after successful payment
+        localStorage.setItem('cartItems', JSON.stringify([]));
+        
+        // Close modal
+        paymentModal.classList.remove('active');
+        
+        // Reload page
+        loadCart();
+      });
+
+      // Cancel payment handler
+      btnCancelPayment.addEventListener('click', () => {
+        paymentModal.classList.remove('active');
+      });
+
+      // Close modal when clicking outside of modal-content
+      window.addEventListener('click', (e) => {
+        if (e.target === paymentModal) {
+          paymentModal.classList.remove('active');
+        }
+      });
 
       loadCart();
       // Update cart count periodically
