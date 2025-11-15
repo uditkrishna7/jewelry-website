@@ -98,34 +98,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Contact form (placeholder)
+  // Contact form - send via email
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
+    contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const formData = new FormData(contactForm);
-      const payload = Object.fromEntries(formData.entries());
-      // Send to server endpoint if available
-      try {
-        // Replace URL with your backend endpoint when ready
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (res.ok) {
-          alert('Message sent — thank you!');
-          contactForm.reset();
-        } else {
-          // fallback local message
-          alert('Message saved locally (no backend).');
-          contactForm.reset();
-        }
-      } catch (err) {
-        console.warn('Contact submit failed, offline fallback.', err);
-        alert('Message saved locally (no backend).');
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const message = formData.get('message');
+      
+      // Create mailto link
+      const recipientEmail = 'uditkrishna133@gmail.com';
+      const subject = encodeURIComponent(`New Message from ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+      const mailtoLink = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
+      // Show success message
+      alert('Your email client is opening. Please send the message to complete.');
+      
+      // Reset form
+      setTimeout(() => {
         contactForm.reset();
-      }
+      }, 500);
     });
   }
 
