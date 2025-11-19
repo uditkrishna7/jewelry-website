@@ -109,10 +109,22 @@
                             </div>
 
                             <h3 style="margin-top:1rem">Items</h3>
+                            <div style="display:flex;gap:0.5rem;font-weight:600;margin-bottom:0.25rem">
+                                <div style="flex:2">Product</div>
+                                <div style="width:80px;text-align:center">Qty</div>
+                                <div style="width:100px;text-align:center">Price (₹)</div>
+                                <div style="width:90px"></div>
+                            </div>
                             <div id="items-list">
                                 <!-- Items rows will be added dynamically -->
                             </div>
                             <button type="button" class="btn" id="add-item">Add Item</button>
+
+                            <div id="create-order-totals" style="margin-top:1rem;text-align:right">
+                                <p style="margin:4px 0"><strong>Subtotal:</strong> <span id="create-subtotal">₹0.00</span></p>
+                                <p style="margin:4px 0"><strong>Shipping:</strong> <span id="create-shipping">₹0.00</span></p>
+                                <p style="margin:4px 0"><strong>Total:</strong> <span id="create-total">₹0.00</span></p>
+                            </div>
 
                             <div style="margin-top:1rem;display:flex;gap:1rem;justify-content:flex-end">
                                 <button type="submit" class="btn btn-primary">Save Order</button>

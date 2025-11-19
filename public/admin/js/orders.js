@@ -109,6 +109,8 @@
     form.reset();
     document.getElementById('items-list').innerHTML = '';
     addItemRow();
+    // update totals for the create-order modal
+    setTimeout(updateCreateTotals, 0);
   }
 
   function closeModals(){
@@ -125,11 +127,16 @@
     div.innerHTML = `
       <input placeholder="Product name" class="item-name" style="flex:2" value="${item?escapeHtml(item.name):''}" required />
       <input type="number" placeholder="Qty" class="item-qty" style="width:80px" value="${item?item.quantity:1}" min="1" required />
-      <input type="number" placeholder="Price" class="item-price" style="width:100px" value="${item?item.price:0}" step="0.01" required />
+      <input type="number" placeholder="Price" class="item-price" style="width:100px;text-align:right" value="${item?item.price:0}" step="0.01" required />
       <button type="button" class="btn btn-small btn-remove-item">Remove</button>
     `;
     container.appendChild(div);
-    div.querySelector('.btn-remove-item').addEventListener('click', () => { div.remove(); });
+    const qtyInput = div.querySelector('.item-qty');
+    const priceInput = div.querySelector('.item-price');
+    const onChange = () => updateCreateTotals();
+    qtyInput.addEventListener('input', onChange);
+    priceInput.addEventListener('input', onChange);
+    div.querySelector('.btn-remove-item').addEventListener('click', () => { div.remove(); updateCreateTotals(); });
   }
 
   function collectItems(){
@@ -148,6 +155,18 @@
     const shipping = subtotal > 0 ? 50 : 0; // flat shipping for demo
     const total = subtotal + shipping;
     return { subtotal, shipping, total };
+  }
+
+  // Live update totals in the Create Order modal
+  function updateCreateTotals(){
+    const items = collectItems();
+    const totals = calculateTotals(items);
+    const elSubtotal = document.getElementById('create-subtotal');
+    const elShipping = document.getElementById('create-shipping');
+    const elTotal = document.getElementById('create-total');
+    if(elSubtotal) elSubtotal.textContent = '₹' + totals.subtotal.toFixed(2);
+    if(elShipping) elShipping.textContent = '₹' + totals.shipping.toFixed(2);
+    if(elTotal) elTotal.textContent = '₹' + totals.total.toFixed(2);
   }
 
   function handleCreateOrderSubmit(e){
