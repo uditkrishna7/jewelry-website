@@ -48,6 +48,7 @@
                             <option value="cancelled">Cancelled</option>
                         </select>
                     </div>
+                    <button class="btn btn-primary" id="create-order">Create Order</button>
                     <button class="btn btn-primary" id="export-orders">Export Orders</button>
                 </div>
             </header>
@@ -71,6 +72,54 @@
                             <!-- Order rows will be populated by JavaScript -->
                         </tbody>
                     </table>
+                </div>
+
+                <!-- Create Order Modal -->
+                <div id="create-order-modal" class="modal" aria-hidden="true">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Create Order</h2>
+                            <button class="close-modal" aria-label="Close">✕</button>
+                        </div>
+                        <form id="create-order-form">
+                            <div style="display:flex;gap:1rem;flex-wrap:wrap">
+                                <div style="flex:1;min-width:240px">
+                                    <label for="order-customer">Customer Name</label>
+                                    <input id="order-customer" name="customer" required />
+
+                                    <label for="order-email">Email</label>
+                                    <input id="order-email" name="email" type="email" />
+
+                                    <label for="order-phone">Phone</label>
+                                    <input id="order-phone" name="phone" />
+                                </div>
+
+                                <div style="flex:1;min-width:240px">
+                                    <label for="order-address">Shipping Address</label>
+                                    <textarea id="order-address" name="address" rows="4"></textarea>
+                                    <label for="order-status">Status</label>
+                                    <select id="order-status" name="status">
+                                        <option value="pending">Pending</option>
+                                        <option value="processing">Processing</option>
+                                        <option value="shipped">Shipped</option>
+                                        <option value="delivered">Delivered</option>
+                                        <option value="cancelled">Cancelled</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <h3 style="margin-top:1rem">Items</h3>
+                            <div id="items-list">
+                                <!-- Items rows will be added dynamically -->
+                            </div>
+                            <button type="button" class="btn" id="add-item">Add Item</button>
+
+                            <div style="margin-top:1rem;display:flex;gap:1rem;justify-content:flex-end">
+                                <button type="submit" class="btn btn-primary">Save Order</button>
+                                <button type="button" class="btn close-modal">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
                 <!-- Order Details Modal -->
