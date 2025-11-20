@@ -1,4 +1,4 @@
-# Jewelry Website
+# Beadz Store
 
 ## Overview
 This project is a jewelry website that showcases various jewelry products. It includes a user-friendly interface for browsing products and an admin interface for managing product data.
